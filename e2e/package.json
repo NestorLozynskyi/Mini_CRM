@@ -1,0 +1,9 @@
+{
+  "name": "mini-crm-e2e",
+  "private": true,
+  "type": "module",
+  "description": "Mini CRM browser scenarios and screenshots (playwright-core with the installed Google Chrome).",
+  "devDependencies": {
+    "playwright-core": "^1.56.0"
+  }
+}

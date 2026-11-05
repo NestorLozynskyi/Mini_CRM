@@ -1,0 +1,27 @@
+# Secrets and local environment
+.env
+.env.*
+!.env.example
+
+# Internal working files (not part of the project)
+.ai-coordination/
+docs/evidence/
+
+# Local design-comparison tooling (depends on a private design project)
+e2e/mock.mjs
+e2e/mocks.sh
+e2e/mocks-005.sh
+e2e/compose.py
+
+# Build output and dependencies
+node_modules/
+build/
+dist/
+.gradle/
+.kotlin/
+*.log
+
+# OS / IDE
+.DS_Store
+.idea/
+*.iml

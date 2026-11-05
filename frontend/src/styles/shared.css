@@ -1,0 +1,40 @@
+/* Стилі спільних форм (угода, клієнт, каскадне видалення) з макетів deal-detail.html / clients.html — без змін.
+   Глобальні, бо ці модальні вікна відкриваються з кількох екранів. */
+[data-form="deal"] .df-label-row { display: flex; align-items: baseline; justify-content: space-between; gap: var(--sp-2); }
+[data-form="deal"] .df-label-row label { font-size: var(--fs-sm); font-weight: 500; color: var(--ink-2); }
+[data-form="deal"] .df-new-client { font-size: var(--fs-sm); }
+[data-form="deal"] .combo { position: relative; }
+[data-form="deal"] .combo > .icon { position: absolute; left: 12px; top: 20px; transform: translateY(-50%); width: 18px; height: 18px; color: var(--muted); pointer-events: none; }
+[data-form="deal"] .combo .input { padding-left: 38px; }
+[data-form="deal"] .combo-list { position: absolute; z-index: 10; top: calc(100% + 4px); left: 0; right: 0; max-height: 232px; overflow-y: auto; margin: 0; padding: var(--sp-1); list-style: none; background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-md); box-shadow: var(--sh-3); }
+[data-form="deal"] .combo-option { display: flex; align-items: center; gap: var(--sp-2); min-height: 44px; padding: 4px var(--sp-2); border-radius: var(--r-sm); color: var(--ink-2); font-size: var(--fs-sm); cursor: pointer; }
+[data-form="deal"] .combo-option:hover, [data-form="deal"] .combo-option.is-active { background: var(--surface-hover); color: var(--ink); }
+[data-form="deal"] .combo-option.is-active { box-shadow: inset 0 0 0 2px var(--accent); }
+[data-form="deal"] .combo-option-text { flex: 1 1 auto; min-width: 0; display: grid; line-height: 1.3; }
+[data-form="deal"] .combo-option-name { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; font-weight: 500; color: var(--ink); }
+[data-form="deal"] .combo-option-meta { font-size: var(--fs-xs); color: var(--muted); }
+[data-form="deal"] .combo-option > .icon { width: 16px; height: 16px; flex: none; color: var(--accent); }
+[data-form="deal"] .combo-empty { padding: var(--sp-3); font-size: var(--fs-sm); color: var(--muted); }
+[data-form="deal"] .input-affix { position: relative; }
+[data-form="deal"] .input-affix-text { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); font-family: var(--font-mono); font-size: var(--fs-sm); color: var(--muted); pointer-events: none; }
+[data-form="deal"] .input-affix .input { padding-left: calc(20px + var(--affix-ch, 1ch)); font-family: var(--font-mono); }
+@media (pointer: coarse) { [data-form="deal"] .combo > .icon { top: 22px; } }
+.tag-input { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; min-height: 40px; padding: 6px 8px; background: var(--surface); border: 1px solid var(--border-strong); border-radius: var(--r-sm); box-shadow: var(--sh-1); cursor: text; transition: border-color var(--dur-fast) var(--ease); }
+.tag-input:hover { border-color: #98A2B3; }
+.tag-input:focus-within { outline: var(--focus-ring); outline-offset: 1px; border-color: var(--accent); }
+.tag-input-chips { display: contents; }
+.tag-input-field { flex: 1 1 120px; min-width: 120px; min-height: 26px; padding: 0 4px; border: 0; background: none; font-size: var(--fs-sm); color: var(--ink); }
+.tag-input-field:focus { outline: none; }
+.tag-input-field::placeholder { color: var(--placeholder); }
+.tag-suggest { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+.tag-suggest-label { font-size: var(--fs-xs); color: var(--muted); margin-right: 2px; }
+.tag-suggest-item { display: inline-flex; align-items: center; gap: 6px; height: 28px; padding: 0 10px; border: 1px dashed var(--border-strong); border-radius: var(--r-sm); background: var(--surface-2); color: var(--ink-2); font-size: var(--fs-xs); font-weight: 500; }
+.tag-suggest-item:hover { border-style: solid; background: var(--surface); color: var(--ink); }
+.tag-suggest-item .icon { width: 14px; height: 14px; }
+.tag-suggest-item.is-create { border-color: var(--accent-border); color: var(--accent-hover); background: var(--accent-soft); }
+@media (max-width: 767.98px) { .tag-input-field { font-size: var(--fs-md); } }
+.delete-impact { list-style: none; display: grid; gap: 6px; margin: var(--sp-3) 0; padding: var(--sp-3); border: 1px solid var(--danger-border); border-radius: var(--r-sm); background: var(--danger-soft); }
+.delete-impact li { display: flex; align-items: center; gap: var(--sp-2); font-size: var(--fs-sm); color: var(--ink-2); }
+.delete-impact .icon { width: 16px; height: 16px; color: var(--danger); }
+.delete-impact strong { color: var(--ink); }
+.company-hint { font-size: var(--fs-sm); }

@@ -1,0 +1,22 @@
+/* Стилі екрана screens/demo-expired.html з погодженого макета (без змін), обмежені областю екрана. */
+[data-screen="demo-expired"] {
+    .expired { min-height: 100vh; min-height: 100dvh; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--sp-6); padding: var(--sp-10) var(--sp-6); }
+    .expired-brand { display: inline-flex; align-items: center; gap: 10px; color: var(--ink); font-weight: 700; letter-spacing: -0.02em; }
+    .expired-brand:hover { color: var(--ink); text-decoration: none; }
+    .expired-brand .brand-mark { width: 32px; height: 32px; }
+    .expired-card { width: 100%; max-width: 480px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-lg); box-shadow: var(--sh-2); padding: var(--sp-10) var(--sp-8) var(--sp-8); display: grid; gap: var(--sp-6); text-align: center; }
+    .expired-icon { justify-self: center; display: grid; place-items: center; width: 56px; height: 56px; border-radius: 50%; background: var(--surface-hover); color: var(--muted); }
+    .expired-icon .icon { width: 28px; height: 28px; }
+    .expired-head { display: grid; gap: var(--sp-2); }
+    .expired-title { font-size: var(--fs-xl); letter-spacing: -0.02em; }
+    .expired-text { color: var(--muted); font-size: var(--fs-sm); max-width: 40ch; margin: 0 auto; }
+    .expired-actions { display: grid; gap: var(--sp-3); }
+    .expired-actions .btn-pair { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-3); }
+    .expired-note { display: flex; gap: var(--sp-2); align-items: flex-start; text-align: left; padding: var(--sp-3) var(--sp-4); background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--r-md); font-size: var(--fs-sm); color: var(--ink-2); }
+    .expired-note .icon { color: var(--accent); width: 18px; height: 18px; margin-top: 2px; }
+    @media (max-width: 767.98px) {
+      .expired { justify-content: flex-start; padding: var(--sp-8) var(--sp-4); gap: var(--sp-5); }
+      .expired-card { padding: var(--sp-8) var(--sp-5) var(--sp-6); border-radius: var(--r-md); }
+      .expired-actions .btn-pair { grid-template-columns: 1fr; }
+    }
+}

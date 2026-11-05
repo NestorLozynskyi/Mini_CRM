@@ -1,0 +1,53 @@
+/* Стилі екрана screens/deals-list.html з погодженого макета (без змін), обмежені областю екрана. */
+[data-screen="deals-list"] {
+    /* ---- Deals list: page-local styles (DS tokens only) ---- */
+    .stage-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--stage-dot, var(--subtle)); flex: none; }
+    .list-notice { margin-bottom: var(--sp-4); }
+    .filter-summary strong { color: var(--ink); font-weight: 600; }
+    .filter-summary .btn-link { font-size: var(--fs-sm); }
+    .scope-count { font-family: var(--font-mono); font-size: var(--fs-xs); color: var(--muted); }
+
+    .deals-table .col-deal { min-width: 200px; }
+    .deals-table .table-cell-sub { max-width: 280px; margin-top: 2px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+    .client-cell { display: inline-flex; align-items: center; gap: var(--sp-2); max-width: 200px; color: var(--ink-2); }
+    .client-cell span { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+    .client-cell:hover { color: var(--accent); text-decoration: none; }
+    .overdue-flag { display: inline-flex; align-items: center; gap: 4px; margin-left: var(--sp-2); font-family: var(--font-sans); font-size: var(--fs-xs); font-weight: 600; color: var(--danger); }
+    .overdue-flag .icon { width: 14px; height: 14px; }
+    .is-none { color: var(--subtle); font-family: var(--font-sans); }
+    .table-footer strong { font-family: var(--font-mono); font-weight: 600; color: var(--ink); }
+    .deals-table tr.is-leaving td { opacity: 0.3; transition: opacity var(--dur) var(--ease); }
+
+    .deal-lc { position: relative; align-items: flex-start; }
+    .deal-lc-link { color: var(--ink); }
+    .deal-lc-link:hover { text-decoration: none; color: var(--accent); }
+    .deal-lc-link::after { content: ""; position: absolute; inset: 0; border-radius: inherit; }
+    .deal-lc .list-card-meta .icon { width: 14px; height: 14px; color: var(--subtle); }
+    .deal-lc .list-card-meta .overdue-flag { margin-left: 0; }
+    .deal-lc .list-card-meta .overdue-flag .icon { color: var(--danger); }
+    .deal-lc-amount { font-family: var(--font-mono); font-weight: 600; color: var(--ink); }
+    .deal-lc .list-card-trailing .btn { position: relative; z-index: 1; }
+    .deal-lc .list-card-trailing .btn .icon { color: inherit; }
+    .deal-lc-date { font-family: var(--font-mono); font-size: var(--fs-xs); }
+
+    /* ---- Deal form (shared by deals-board / deals-list / deal-detail) ---- */
+    .df-label-row { display: flex; align-items: baseline; justify-content: space-between; gap: var(--sp-2); }
+    .df-label-row label { font-size: var(--fs-sm); font-weight: 500; color: var(--ink-2); }
+    .df-new-client { font-size: var(--fs-sm); }
+    .combo { position: relative; }
+    .combo > .icon { position: absolute; left: 12px; top: 20px; transform: translateY(-50%); width: 18px; height: 18px; color: var(--muted); pointer-events: none; }
+    .combo .input { padding-left: 38px; }
+    .combo-list { position: absolute; z-index: 10; top: calc(100% + 4px); left: 0; right: 0; max-height: 232px; overflow-y: auto; margin: 0; padding: var(--sp-1); list-style: none; background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-md); box-shadow: var(--sh-3); }
+    .combo-option { display: flex; align-items: center; gap: var(--sp-2); min-height: 44px; padding: 4px var(--sp-2); border-radius: var(--r-sm); color: var(--ink-2); font-size: var(--fs-sm); cursor: pointer; }
+    .combo-option:hover, .combo-option.is-active { background: var(--surface-hover); color: var(--ink); }
+    .combo-option.is-active { box-shadow: inset 0 0 0 2px var(--accent); }
+    .combo-option-text { flex: 1 1 auto; min-width: 0; display: grid; line-height: 1.3; }
+    .combo-option-name { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; font-weight: 500; color: var(--ink); }
+    .combo-option-meta { font-size: var(--fs-xs); color: var(--muted); }
+    .combo-option > .icon { width: 16px; height: 16px; flex: none; color: var(--accent); }
+    .combo-empty { padding: var(--sp-3); font-size: var(--fs-sm); color: var(--muted); }
+    .input-affix { position: relative; }
+    .input-affix-text { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); font-family: var(--font-mono); font-size: var(--fs-sm); color: var(--muted); pointer-events: none; }
+    .input-affix .input { padding-left: calc(20px + var(--affix-ch, 1ch)); font-family: var(--font-mono); }
+    @media (pointer: coarse) { .combo > .icon { top: 22px; } }
+}

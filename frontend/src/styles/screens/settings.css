@@ -1,0 +1,23 @@
+/* Стилі екрана screens/settings.html з погодженого макета (без змін), обмежені областю екрана. */
+[data-screen="settings"] {
+    .account-row { display: flex; align-items: center; gap: var(--sp-3); flex-wrap: wrap; }
+    .account-value { font-size: var(--fs-md); color: var(--ink); overflow-wrap: anywhere; }
+    .account-hint { font-size: var(--fs-sm); color: var(--muted); }
+    .currency-current { display: flex; align-items: center; gap: var(--sp-2); flex-wrap: wrap; }
+    .settings-error { margin-bottom: var(--sp-4); }
+}
+
+/* Вибраний radio за дизайн-системою (уточнення TASK-005): коло з рамкою акцентного кольору і внутрішньою точкою,
+   як .checkbox у ds.css (розмір, рамка, фокус), замість лише кольору нативного accent-color. */
+[data-screen="settings"] .option-row input[type="radio"] {
+  appearance: none; -webkit-appearance: none; display: grid; place-content: center;
+  width: 20px; height: 20px; border: 1.5px solid var(--border-strong); border-radius: 50%; background: var(--surface);
+  transition: border-color var(--dur-fast) var(--ease);
+}
+[data-screen="settings"] .option-row input[type="radio"]::before {
+  content: ""; width: 10px; height: 10px; border-radius: 50%; background: var(--accent);
+  transform: scale(0); transition: transform var(--dur-fast) var(--ease);
+}
+[data-screen="settings"] .option-row:hover input[type="radio"] { border-color: var(--accent); }
+[data-screen="settings"] .option-row input[type="radio"]:checked { border-color: var(--accent); }
+[data-screen="settings"] .option-row input[type="radio"]:checked::before { transform: scale(1); }

@@ -1,0 +1,87 @@
+/* Стилі екрана screens/tasks.html з погодженого макета (без змін), обмежені областю екрана. */
+[data-screen="tasks"] {
+    /* ---- Tasks screen (local; DS tokens only) ---- */
+    .tasks-toolbar { display: flex; align-items: flex-end; justify-content: space-between; gap: var(--sp-4); margin-bottom: var(--sp-5); }
+    .tasks-toolbar .tabs { flex: 1 1 auto; }
+    .tasks-summary { flex: none; font-size: var(--fs-sm); color: var(--muted); padding-bottom: var(--sp-3); }
+    .tasks-summary strong { color: var(--ink); font-weight: 600; }
+    .tasks-summary .is-danger { color: var(--danger); }
+
+    .tab .icon { width: 16px; height: 16px; }
+    .tab.is-overdue.has-items { color: var(--danger); }
+    .tab.is-overdue.has-items[aria-selected="true"] { box-shadow: inset 0 -2px 0 var(--danger); }
+    .tab-count.is-danger.is-strong { background: var(--danger); color: #fff; }
+
+    .task-groups { display: grid; gap: var(--sp-5); }
+    .task-group .card-header { min-height: 48px; }
+    .task-group-title { display: flex; align-items: center; gap: var(--sp-2); font-size: var(--fs-sm); font-weight: 600; color: var(--ink); }
+    .task-group-title .icon { width: 18px; height: 18px; color: var(--muted); }
+    .task-group-range { font-family: var(--font-mono); font-size: var(--fs-xs); font-weight: 500; color: var(--muted); }
+    .task-group.is-overdue { border-color: var(--danger-border); }
+    .task-group.is-overdue .card-header { background: var(--danger-soft); border-bottom-color: var(--danger-border); border-radius: calc(var(--r-md) - 1px) calc(var(--r-md) - 1px) 0 0; }
+    .task-group.is-overdue .task-group-title, .task-group.is-overdue .task-group-title .icon { color: var(--danger); }
+    .task-group.is-overdue .task-item { box-shadow: inset 3px 0 0 var(--danger); }
+    .task-group .empty-state.is-compact { padding: var(--sp-6) var(--sp-4); }
+
+    .task-item { align-items: flex-start; }
+    .task-item.is-new { animation: task-flash 1.6s var(--ease); }
+    .due-abs { color: var(--muted); font-weight: 400; }
+    .due-sep { color: var(--border-strong); }
+    .done-chip { color: var(--success); }
+    .task-item.is-done .done-chip { color: var(--success); }
+
+    /* Create / edit form */
+    .rel-switch { display: flex; margin-bottom: var(--sp-2); }
+    .rel-switch .segmented-item { flex: 1 1 0; }
+    .combo { position: relative; }
+    .combo-list {
+      position: absolute; z-index: 5; left: 0; right: 0; top: calc(100% + 4px); max-height: 240px; overflow-y: auto;
+      margin: 0; padding: var(--sp-1); list-style: none; background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--r-md); box-shadow: var(--sh-3);
+    }
+    .combo-option { display: flex; align-items: center; gap: var(--sp-2); min-height: 40px; padding: 6px var(--sp-3); border-radius: var(--r-sm); font-size: var(--fs-sm); color: var(--ink-2); cursor: pointer; }
+    .combo-option .icon { width: 16px; height: 16px; color: var(--muted); flex: none; }
+    .combo-option-main { display: grid; min-width: 0; }
+    .combo-option-sub { font-size: var(--fs-xs); color: var(--muted); }
+    .combo-option[aria-selected="true"], .combo-option.is-active { background: var(--surface-hover); color: var(--ink); }
+    .combo-option .icon-check { margin-left: auto; color: var(--accent); }
+    .combo-empty { padding: var(--sp-3); font-size: var(--fs-sm); color: var(--muted); }
+    .combo .input { padding-right: 40px; }
+    .combo-caret { position: absolute; right: 12px; top: 20px; transform: translateY(-50%); width: 18px; height: 18px; color: var(--muted); pointer-events: none; }
+    @media (pointer: coarse) { .combo-caret { top: 22px; } }
+
+    /* Loading skeleton list */
+    .sk-task { display: flex; align-items: center; gap: var(--sp-3); padding: var(--sp-4); border-bottom: 1px solid var(--border); }
+    .sk-task:last-child { border-bottom: 0; }
+    .sk-box { width: 20px; height: 20px; border-radius: 6px; flex: none; }
+    .sk-tab { width: 96px; height: 20px; border-radius: var(--r-full); }
+
+    /* Tablet */
+    @media (max-width: 1023.98px) {
+      .tasks-summary { display: none; }
+    }
+    /* Mobile: tabs become a horizontal segmented rail */
+    @media (max-width: 767.98px) {
+      .tasks-toolbar { margin: 0 calc(-1 * var(--sp-4)) var(--sp-4); }
+      .tasks-toolbar .tabs {
+        border-bottom: 0; gap: var(--sp-2); padding: 2px var(--sp-4); scroll-padding-inline: var(--sp-4);
+        scroll-snap-type: x proximity;
+      }
+      .tasks-toolbar .tab {
+        flex: none; min-height: 40px; padding: 0 var(--sp-3); border: 1px solid var(--border); border-radius: var(--r-full);
+        background: var(--surface); box-shadow: none; scroll-snap-align: start;
+      }
+      .tasks-toolbar .tab[aria-selected="true"] { background: var(--ink); border-color: var(--ink); color: #fff; box-shadow: none; }
+      .tasks-toolbar .tab[aria-selected="true"] .tab-count { background: rgba(255,255,255,.18); color: #fff; }
+      .tasks-toolbar .tab.is-overdue.has-items { border-color: var(--danger-border); background: var(--danger-soft); }
+      .tasks-toolbar .tab.is-overdue.has-items[aria-selected="true"] { background: var(--danger); border-color: var(--danger); color: #fff; }
+      .tasks-toolbar .tab.is-overdue.has-items[aria-selected="true"] .tab-count { background: #fff; color: var(--danger); }
+      .task-groups { gap: var(--sp-4); }
+      .task-group { border-radius: var(--r-md); }
+      .task-group .card-header { padding-left: var(--sp-4); padding-right: var(--sp-3); }
+      .due-abs-long { display: none; }
+    }
+}
+
+/* @keyframes не можна вкладати в селектор — винесено на верхній рівень (назви з макета). */
+  @keyframes task-flash { 0%, 40% { background: var(--accent-soft); } 100% { background: transparent; } }

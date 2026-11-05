@@ -1,0 +1,51 @@
+/* Стилі екрана screens/sign-up.html з погодженого макета (без змін), обмежені областю екрана. */
+[data-screen="sign-up"] {
+    /* Auth layout (local to auth screens; DS tokens only) */
+    .auth { min-height: 100vh; min-height: 100dvh; display: grid; grid-template-columns: minmax(0, 1fr); }
+    .auth-main { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--sp-6); padding: var(--sp-10) var(--sp-6); min-width: 0; }
+    .auth-brand { display: inline-flex; align-items: center; gap: 10px; color: var(--ink); font-weight: 700; letter-spacing: -0.02em; text-decoration: none; }
+    .auth-brand:hover { color: var(--ink); text-decoration: none; }
+    .auth-brand .brand-mark { width: 32px; height: 32px; }
+    .auth-card { width: 100%; max-width: 420px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-lg); box-shadow: var(--sh-2); padding: var(--sp-8); display: grid; gap: var(--sp-6); }
+    .auth-head { display: grid; gap: var(--sp-1); }
+    .auth-title { font-size: var(--fs-xl); letter-spacing: -0.02em; }
+    .auth-sub { font-size: var(--fs-sm); color: var(--muted); }
+    .auth-form { display: grid; gap: var(--sp-4); }
+    .auth-form fieldset { border: 0; margin: 0; padding: 0; min-width: 0; display: grid; gap: var(--sp-4); }
+    .auth-form .btn-primary { margin-top: var(--sp-1); }
+    .error-summary ul { list-style: none; display: grid; gap: 2px; margin-top: 2px; }
+    .error-summary a { color: var(--danger); text-decoration: underline; text-underline-offset: 2px; }
+    .error-summary a:hover { color: var(--danger-hover); }
+    .error-summary:focus-visible { outline: var(--focus-ring); outline-offset: 2px; }
+    .demo-cta { display: grid; gap: var(--sp-2); padding: var(--sp-4); border: 1px dashed var(--accent-border); border-radius: var(--r-md); background: var(--accent-soft); }
+    .demo-cta .btn { border-color: var(--accent-border); color: var(--accent-hover); }
+    .demo-cta .btn:hover { border-color: var(--accent); color: var(--accent-hover); background: var(--surface); }
+    .demo-cta .btn .icon { color: var(--accent); }
+    .demo-cta-text { font-size: var(--fs-sm); color: var(--ink-2); text-align: center; }
+    .auth-foot { font-size: var(--fs-sm); color: var(--muted); text-align: center; }
+    .auth-foot a { font-weight: 500; }
+
+    /* Side panel — desktop only */
+    .auth-aside { display: none; }
+    @media (min-width: 1024px) {
+      .auth { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+      .auth-aside { display: flex; flex-direction: column; justify-content: center; gap: var(--sp-8); padding: var(--sp-16) clamp(48px, 6vw, 96px); background: var(--surface); border-right: 1px solid var(--border); }
+      .auth-main .auth-brand { display: none; }
+    }
+    .aside-brand { display: inline-flex; align-items: center; gap: 10px; font-weight: 700; font-size: var(--fs-lg); letter-spacing: -0.02em; color: var(--ink); }
+    .aside-brand .brand-mark { width: 32px; height: 32px; }
+    .aside-title { font-size: var(--fs-2xl); letter-spacing: -0.03em; max-width: 18ch; }
+    .aside-lead { color: var(--muted); max-width: 46ch; margin-top: var(--sp-3); }
+    .aside-list { list-style: none; display: grid; gap: var(--sp-4); max-width: 46ch; }
+    .aside-list li { display: flex; gap: var(--sp-3); align-items: flex-start; color: var(--ink-2); font-size: var(--fs-sm); }
+    .aside-list .aside-ico { display: grid; place-items: center; flex: none; width: 36px; height: 36px; border-radius: var(--r-sm); background: var(--accent-soft); color: var(--accent); }
+    .aside-list strong { display: block; color: var(--ink); font-weight: 600; font-size: var(--fs-md); }
+    .aside-stages { display: flex; flex-wrap: wrap; gap: var(--sp-2); align-items: center; }
+    .aside-stages .icon { color: var(--subtle); width: 14px; height: 14px; }
+
+    @media (max-width: 767.98px) {
+      .auth-main { justify-content: flex-start; padding: var(--sp-8) var(--sp-4); gap: var(--sp-5); }
+      .auth-card { padding: var(--sp-6) var(--sp-5); border-radius: var(--r-md); }
+    }
+    .field-hint.is-met { color: var(--success); display: flex; align-items: center; gap: 4px; }
+}

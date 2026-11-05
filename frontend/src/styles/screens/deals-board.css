@@ -1,0 +1,74 @@
+/* Стилі екрана screens/deals-board.html з погодженого макета (без змін), обмежені областю екрана. */
+[data-screen="deals-board"] {
+    /* ---- Deals board: page-local styles (DS tokens only) ---- */
+    .board-toolbar .board-client { width: auto; flex: 0 1 220px; min-width: 180px; }
+    .board-summary { font-size: var(--fs-sm); color: var(--muted); white-space: nowrap; }
+    .board-summary strong { font-family: var(--font-mono); font-weight: 600; color: var(--ink); }
+
+    /* Board: all six columns fit at 1440; narrower viewports scroll inside the board */
+    .board.kanban { grid-auto-columns: minmax(176px, 1fr); gap: var(--sp-2); }
+    .board .kanban-col { position: relative; min-height: 360px; }
+    .board .kanban-col-header { flex-wrap: wrap; row-gap: 4px; }
+    .board .kanban-sum { flex-basis: 100%; margin-left: 0; }
+    .board .kanban-col-body:has(.kanban-drop-slot) .kanban-empty { display: none; }
+    .board .deal-card-top { padding-right: 24px; }
+    .board .deal-card-menu { position: absolute; z-index: 2; top: 6px; right: 6px; width: 28px; height: 28px; min-height: 28px; }
+    .board .deal-card-foot { flex-wrap: wrap; row-gap: 4px; }
+    .deal-card-date.is-overdue { color: var(--danger); font-weight: 500; }
+    .deal-card-date.is-overdue strong { font-family: var(--font-sans); font-weight: 600; }
+    .deal-card-date.is-none { font-family: var(--font-sans); color: var(--subtle); }
+    .deal-card-move .od-row .icon { width: 16px; height: 16px; }
+
+    /* Drag & drop */
+    .board .deal-card.is-drag-source { opacity: 0.45; transform: none; box-shadow: none; border-style: dashed; }
+    .board .deal-card.drag-preview { position: absolute; left: var(--sp-3); right: calc(-1 * var(--sp-2)); z-index: 6; pointer-events: none; transform: rotate(2deg); box-shadow: var(--sh-3), 0 0 0 1px var(--accent-border); }
+    .board .deal-card.is-flash { animation: deals-flash 1.6s var(--ease); }
+
+    /* Empty board */
+    .board-empty { margin-bottom: var(--sp-4); }
+    .board-empty .empty-state { padding-top: var(--sp-8); padding-bottom: var(--sp-8); }
+
+    /* Mobile: stage tab strip + one column at a time */
+    .stage-rail { margin: 0 calc(-1 * var(--sp-4)) var(--sp-3); padding-top: 2px; padding-bottom: 2px; }
+    .stage-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--stage-dot, var(--subtle)); flex: none; }
+
+    @media (min-width: 768px) and (max-width: 1023.98px) {
+      .board.kanban { grid-auto-columns: 280px; gap: var(--sp-3); scroll-snap-type: x mandatory; }
+    }
+    @media (max-width: 767.98px) {
+      .board-toolbar .board-client { flex: 1 1 100%; max-width: none; }
+      .board-summary { white-space: normal; }
+      .board.kanban { display: block; margin: 0; padding: 0; overflow: visible; }
+      .board > .kanban-col:not(.is-current) { display: none; }
+      .board .kanban-col { min-height: 0; }
+      .board .kanban-col-header { flex-wrap: nowrap; }
+      .board .kanban-sum { flex-basis: auto; margin-left: auto; }
+      .board .deal-card-top { padding-right: 32px; }
+      .board .deal-card-menu { width: 36px; height: 36px; top: 4px; right: 4px; }
+      .board .deal-card.drag-preview { right: var(--sp-1); }
+    }
+
+    /* ---- Deal form (shared by deals-board / deals-list / deal-detail) ---- */
+    .df-label-row { display: flex; align-items: baseline; justify-content: space-between; gap: var(--sp-2); }
+    .df-label-row label { font-size: var(--fs-sm); font-weight: 500; color: var(--ink-2); }
+    .df-new-client { font-size: var(--fs-sm); }
+    .combo { position: relative; }
+    .combo > .icon { position: absolute; left: 12px; top: 20px; transform: translateY(-50%); width: 18px; height: 18px; color: var(--muted); pointer-events: none; }
+    .combo .input { padding-left: 38px; }
+    .combo-list { position: absolute; z-index: 10; top: calc(100% + 4px); left: 0; right: 0; max-height: 232px; overflow-y: auto; margin: 0; padding: var(--sp-1); list-style: none; background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-md); box-shadow: var(--sh-3); }
+    .combo-option { display: flex; align-items: center; gap: var(--sp-2); min-height: 44px; padding: 4px var(--sp-2); border-radius: var(--r-sm); color: var(--ink-2); font-size: var(--fs-sm); cursor: pointer; }
+    .combo-option:hover, .combo-option.is-active { background: var(--surface-hover); color: var(--ink); }
+    .combo-option.is-active { box-shadow: inset 0 0 0 2px var(--accent); }
+    .combo-option-text { flex: 1 1 auto; min-width: 0; display: grid; line-height: 1.3; }
+    .combo-option-name { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; font-weight: 500; color: var(--ink); }
+    .combo-option-meta { font-size: var(--fs-xs); color: var(--muted); }
+    .combo-option > .icon { width: 16px; height: 16px; flex: none; color: var(--accent); }
+    .combo-empty { padding: var(--sp-3); font-size: var(--fs-sm); color: var(--muted); }
+    .input-affix { position: relative; }
+    .input-affix-text { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); font-family: var(--font-mono); font-size: var(--fs-sm); color: var(--muted); pointer-events: none; }
+    .input-affix .input { padding-left: calc(20px + var(--affix-ch, 1ch)); font-family: var(--font-mono); }
+    @media (pointer: coarse) { .combo > .icon { top: 22px; } }
+}
+
+/* @keyframes не можна вкладати в селектор — винесено на верхній рівень (назви з макета). */
+@keyframes deals-flash { 0%, 45% { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-border), var(--sh-2); } 100% { } }

@@ -1,0 +1,36 @@
+# SITE_ADDRESS:
+#   локально     ":80"                 — звичайний HTTP, без сертифікатів;
+#   на VPS       "crm.example.com"     — Caddy автоматично отримає й оновлюватиме HTTPS-сертифікат
+#                                        (потрібні DNS A/AAAA-запис і відкриті порти 80/443).
+{
+	admin off
+}
+
+{$SITE_ADDRESS::80} {
+	encode zstd gzip
+
+	# REST API -> бекенд
+	handle /api/* {
+		reverse_proxy {$BACKEND_UPSTREAM:backend:8080}
+	}
+
+	# SPA: статичні файли фронтенду, невідомі шляхи -> index.html
+	handle {
+		root * {$SITE_ROOT:/srv}
+		@assets path /assets/*
+		header @assets Cache-Control "public, max-age=31536000, immutable"
+		@html path / /index.html
+		header @html Cache-Control "no-cache"
+		try_files {path} /index.html
+		file_server
+	}
+
+	header {
+		X-Content-Type-Options "nosniff"
+		X-Frame-Options "DENY"
+		Referrer-Policy "strict-origin-when-cross-origin"
+		-Server
+	}
+
+	log
+}
